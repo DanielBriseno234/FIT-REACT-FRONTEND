@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definición de fuentes */
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins/Poppins-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Aplicar la fuente */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+@keyframes orbit-animation {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(20px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(20px) rotate(-360deg);
+    }
+}
+
+@keyframes particle {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(20px) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(20px) rotate(-360deg);
+        opacity: 0.3;
+    }
+}
+
+@keyframes wave {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1.3);
+        opacity: 0;
+    }
+}
+
+.animate-orbit {
+    animation: orbit-animation 2s linear infinite;
+}
+
+.animate-particle {
+    animation: particle 1.5s ease-in-out infinite;
+}
+
+.animate-wave {
+    animation: wave 2s ease-out infinite;
+}
+
+.animate-spin-reverse {
+    animation: spin 3s linear infinite reverse;
+}
+
+/* @theme {
+    --color-primary: #170BF4;
+    --color-secondary: #3127F5;
+    --color-success: #02A314;
+    --color-error: #A30702;
+    --color-gradient-from: #170BF4;
+    --color-gradient-to: #0F079C;
+} */
+
+:root {
+    --color-primary: #170BF4;
+    --color-secondary: #3127F5;
+    --color-success: #02A314;
+    --color-error: #A30702;
+    --color-gradient-from: #170BF4;
+    --color-gradient-to: #0F079C;
+}
+
+/* Estilos para react-select */
+.react-select-container {
+    font-size: 0.875rem;
+}
+
+.react-select__control {
+    border: 1px solid #d1d5db !important;
+    min-height: 42px;
+    box-shadow: none !important;
+}
+
+.react-select__control--is-focused {
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 1px var(--color-primary) !important;
+}
+
+.react-select__multi-value {
+    background-color: #e5e7eb;
+    border-radius: 4px;
+}
+
+.react-select__multi-value__label {
+    color: #111827;
+    font-size: 0.875rem;
+}
+
+.react-select__multi-value__remove:hover {
+    background-color: #f3f4f6;
+    color: #ef4444;
+}
+
+.react-select__menu {
+    z-index: 10;
+}
+
+.react-select__option--is-focused {
+    background-color: #f3f4f6 !important;
+}
+
+.react-select__option--is-selected {
+    background-color: var(--color-primary) !important;
+    color: white !important;
+}
