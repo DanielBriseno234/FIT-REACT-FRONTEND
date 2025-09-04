@@ -4,7 +4,7 @@ import Loader from "../../components/Utiles/Loader/Loader";
 import PageContent from "../../components/Utiles/Page/PageContent";
 import PageHeader from "../../components/Utiles/Page/PageHeader";
 import { getErrorMessage } from "../../helpers/errorHelper";
-import { useRoles } from "../../hooks/useRoles"
+import { useRoles } from "../../hooks/Rol/useRoles"
 import { Alert } from "@material-tailwind/react";
 import EmptyState from "../../components/Utiles/Page/EmptyState";
 import { motion } from "framer-motion";

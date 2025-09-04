@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient, keepPreviousData } from "@tanstack/react-query";
-import { obtenerGimnasios } from "../api/gym";
+import { obtenerUsuarios } from "../../api/usuario";
 
-export const useGimnasios = (page: number, size: number, estatus: string, filtro: string) => {
+export const useUsuarios = (page: number, size: number, estatus: string, filtro: string) => {
     const queryClient = useQueryClient();
 
     const {
@@ -10,17 +10,16 @@ export const useGimnasios = (page: number, size: number, estatus: string, filtro
         isLoading,
         refetch
     } = useQuery({
-        queryKey: ["gimnasios", page, size, estatus, filtro], // clave única
-        queryFn: () => obtenerGimnasios(page, size, estatus, filtro), // sin parámetros extras
+        queryKey: ["usuarios", page, size, estatus, filtro],
+        queryFn: () => obtenerUsuarios(page, size, estatus, filtro),
         placeholderData: keepPreviousData,
         select: (response) => response.datos,
         staleTime: 1000 * 60 * 5,
         retry: false,
-
     });
 
-    const invalidateGimnasios = () => {
-        queryClient.invalidateQueries({ queryKey: ['gimnasios'] });
+    const invalidateUsuarios = () => {
+        queryClient.invalidateQueries({ queryKey: ['usuarios'] });
     };
 
     return {
@@ -28,6 +27,6 @@ export const useGimnasios = (page: number, size: number, estatus: string, filtro
         error,
         isLoading,
         refetch,
-        invalidateGimnasios
+        invalidateUsuarios
     };
-};
+}

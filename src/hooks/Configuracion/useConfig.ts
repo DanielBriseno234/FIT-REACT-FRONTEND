@@ -2,7 +2,7 @@ import {
   useQuery,
   useQueryClient
 } from '@tanstack/react-query'
-import { useConfigStore } from '../store/configStore';
+import { useConfigStore } from '../../store/configStore';
 
 const useConfig = () => {
   const queryClient = useQueryClient();

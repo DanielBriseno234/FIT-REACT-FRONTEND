@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { type ConfiguracionInputType } from '../interfaces/Configuracion/Configuracion';
+import { useConfigStore } from "../../store/configStore";
+import type { ConfiguracionInputType } from "../../interfaces/Configuracion/Configuracion";
 //import { modificarConfig } from '../api/config';
-import { useConfigStore } from '../store/configStore';
+
 
 export const useConfigMutations = () => {
     const queryClient = useQueryClient();

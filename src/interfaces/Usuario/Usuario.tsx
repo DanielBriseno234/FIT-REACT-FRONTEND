@@ -1,77 +1,108 @@
-export interface Token {
-    token: string;
-    refreshToken: string;
-}
+import type { GimnasioItem } from "../Gimnasio/Gimnasio";
+import type { Pageable, Sort } from "../Paginacion/Paginacion";
 
-export interface Gimnasio {
-    id: number;
-    nombre: string;
-    direccion: string;
+// TIPOS DE ENTRADA
+export type UsuarioInputType = {
+    email: string;
+    contrasena: string;
+    nombres: string;
+    apellidoPaterno: string;
+    apellidoMaterno: string;
     telefono: string;
-    logoUrl: string;
-    activo: "ACTIVO" | "INACTIVO";
+    urlFotoPerfil: string;
+    genero: string;
+    idGimnasioRegistro: number;
+    gimnasiosPermitidosIds: number[];
+    rolesIds: RolesUsuarioInputType[];
+    recepcionista: EntrenadorRecepcionistaInputType;
+    entrenador: EntrenadorRecepcionistaInputType;
 }
 
-export interface Rol {
-    id: number;
-    nombre: string;
-    descripcion: string;
-}
+export type UsuarioInputUpdateType = Omit<
+    UsuarioInputType,
+    "contrasena" | "urlFotoPerfil"
+>;
 
-export interface Permiso {
-    id: number;
-    nombre: string;
-    descripcion: string;
-}
-
-export interface NivelAcceso {
-    id: number;
-    nombre: string;
-    descripcion: string;
-    permisos: Permiso[];
-}
-
-export interface RolAsignado {
-    rol: Rol;
-    nivelAcceso: NivelAcceso;
-}
-
-export interface Recepcionista {
-    id: number;
+export type EntrenadorRecepcionistaInputType = {
     biografia: string;
-    fechaContratacion: string; // ISO date
+    fechaContratacion: Date;
 }
 
-export interface Entrenador {
+export type RolesUsuarioInputType = {
+    rolId: number;
+    nivelAccesoId: number;
+}
+
+
+// TIPOS DE SALIDA
+export type UsuarioOutputPaginated = {
+    totalPages: number;
+    totalElements: number;
+    size: number;
+    number: number;
+    content: UsuarioItem[];
+    sort: Sort[];
+    first: boolean;
+    last: boolean;
+    numberOfElements: number;
+    pageable: Pageable;
+    empty: boolean;
+}
+
+export type UsuarioItem = {
+    correoElectronico: any;
     id: number;
-    biografia: string;
-    fechaContratacion: string; // ISO date
+    nombres: string;
+    apellidoPaterno: string;
+    apellidoMaterno: string;
+    telefono: string;
+    urlFotoPerfil: string;
+    genero: string;
+    roles: RolOutputType[];
+    estatus: string;
+    fechaModificacion: string;
 }
 
-export interface Socio {
+export type UsuarioOutputType = {
     id: number;
-    noSocio: string;
-    fechaIngreso: string;      // ISO date
-    fechaNacimiento: string;   // ISO date
-    direccion: string;
-    nss: string;
-    tipoSangre: string;
-}
-
-export interface UsuarioOutputType {
-    token: Token;
     email: string;
     nombres: string;
     apellidoPaterno: string;
     apellidoMaterno: string;
     telefono: string;
     urlFotoPerfil: string;
-    genero: "HOMBRE" | "MUJER";  // lo ajustas si hay más valores
-    gimnasioRegistro: Gimnasio;
-    roles: RolAsignado[];
-    gimnasiosPermitidos: Gimnasio[];
-    recepcionista?: Recepcionista;
-    entrenador?: Entrenador;
-    socio?: Socio;
-    estatus: "ACTIVO" | "INACTIVO";
+    genero: string;
+    gimnasioRegistro: GimnasioItem;
+    roles: RolOutputType[];
+    gimnasiosPermitidos: GimnasioItem[];
+    recepcionista: EntrenadorRecepcionistaOutputType;
+    entrenador: EntrenadorRecepcionistaOutputType;
+    estatus: string;
+}
+
+export type EntrenadorRecepcionistaOutputType = {
+    id: number;
+    biografia: string;
+    fechaContratacion: Date;
+}
+
+export type RolOutputType = {
+    idRol: number;
+    nombreRol: string;
+    idNivelAcceso: number;
+    nombreNivelAcceso: string;
+}
+
+export type UsuarioNotificationType = {
+    notificarUsuario: boolean
+}
+
+export type UsuarioCambiarContrasena = {
+    nuevaContrasena: string;
+    confirmacionContrasena: string
+}
+
+export type UsuarioListType = {
+    id: number;
+    nombre: string
 }

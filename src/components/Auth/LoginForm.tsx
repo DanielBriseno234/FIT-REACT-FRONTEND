@@ -84,7 +84,7 @@ export const LoginForm = () => {
                                     className={`w-full px-4 py-3 rounded-lg bg-white/10 border text-white placeholder-blue-200/70 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent transition duration-200 ease-in-out ${errors.email ? 'border-red-500' : 'border-white/20'}`}
                                     placeholder="usuario@empresa.com"
                                     autoComplete="username"
-                                // disabled={loading}
+                                    disabled={isSubmitting}
                                 />
                             </div>
                             <ErrorValidationMessage errors={errors} name="email" />
@@ -109,13 +109,13 @@ export const LoginForm = () => {
                                     className={`w-full px-4 py-3 rounded-lg bg-white/10 border text-white placeholder-blue-200/70 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent transition ease-in-out duration-200 ${errors.email ? 'border-red-500' : 'border-white/20'}`}
                                     placeholder="••••••••"
                                     autoComplete="current-password"
-                                // disabled={loading}
+                                    disabled={isSubmitting}
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
                                     className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[var(--color-primary)] hover:text-[var(--color-secondary)] transition duration-300 ease-in-out"
-                                // disabled={loading}
+                                    disabled={isSubmitting}
                                 >
                                     {showPassword ? <FaEyeSlash /> : <FaEye />}
                                 </button>

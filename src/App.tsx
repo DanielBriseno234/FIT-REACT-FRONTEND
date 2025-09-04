@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useConfigStore } from './store/configStore';
+import type { Color } from './interfaces/Configuracion/Configuracion';
 
 import { LoginPage } from './pages/Auth/LoginPage';
 import { PrivateRoute } from './components/Protectores/PrivateRoute';
@@ -31,6 +32,13 @@ import UsuarioPage from './pages/Admin/UsuarioPage';
 import NivelAccesoPage from './pages/Admin/NivelAccesoPage';
 import NivelAccesoDetallePage from './pages/Admin/NivelAccesoDetallePage';
 import PerfilUsuarioPage from './pages/Generales/PerfilUsuarioPage';
+import UsuarioDetallePage from './pages/Admin/UsuarioDetallePage';
+import { getErrorMessage } from './helpers/errorHelper';
+import MembresisPage from './pages/Admin/MembresisPage';
+import MembresiaDetallePage from './pages/Admin/MembresiaDetallePage';
+import TipoClasePages from './pages/Admin/TipoClasePages';
+import ProgramacionClasePage from './pages/Admin/ProgramacionClasePage';
+import ClasePage from './pages/Admin/ClasePage';
 
 const queryClient = new QueryClient();
 
@@ -43,13 +51,32 @@ export default function App() {
         ? JSON.parse(localStorage.getItem('config-storage')!)
         : null;
 
+      const pathname = window.location.pathname;
 
-      if (storedConfig?.state?.configuracion) {
-        aplicarColoresAlDocumento(storedConfig.state.configuracion);
+      const isLoginPage = pathname === "/" || pathname === "/login";
+      const isRecContrasenaPage = pathname === "/solicitud-recuperacion-contrasena" || pathname.startsWith("/recuperacion-contrasena/");
+      const isVerificarCuentaPage = pathname.startsWith("/verificacion-usuario/");;
+
+      // Validación combinada
+      if (!isLoginPage && !isRecContrasenaPage && !isVerificarCuentaPage) {
+        // Aplica colores o cualquier otra lógica
+        if (storedConfig?.state?.configuracion) {
+          aplicarColoresAlDocumento(storedConfig.state.configuracion);
+        }
       } else {
-        const result = await cargarConfig();
-        if (!result.success) {
-          toast.error(result.mensaje);
+        console.log("hizo consulta")
+        try {
+          const result = await cargarConfig();
+          aplicarColoresAlDocumento({
+            colorPrimario: result.datos?.colorPrimario as Color,
+            colorSecundario: result.datos?.colorSecundario as Color,
+            colorExito: result.datos?.colorExito as Color,
+            colorError: result.datos?.colorError as Color,
+            colorDegradadoDe: result.datos?.colorDegradadoDe as Color,
+            colorDegradadoHacia: result.datos?.colorDegradadoHacia as Color,
+          });
+        } catch (error) {
+          toast.error(getErrorMessage(error));
         }
       }
 
@@ -81,10 +108,6 @@ export default function App() {
           </Route>
 
           <Route element={<PrivateRoute />}>
-            <Route path="/configuracion-inicial" element={<ConfiguracionGlobalForm />} />
-          </Route>
-
-          <Route element={<PrivateRoute />}>
             <Route element={<DashboardLayout />}>
               <Route path="/perfil" element={<PerfilUsuarioPage />} />
             </Route>
@@ -93,6 +116,8 @@ export default function App() {
           <Route element={<PrivateRoute allowedRoles={['ADMIN']} />}>
             <Route element={<DashboardLayout />}>
               <Route path="/admin" element={<AdminDashboardPage />} />
+
+              <Route path="/configuracion-inicial" element={<ConfiguracionGlobalForm />} />
 
               <Route
                 path="/admin/configuracion-global"
@@ -134,6 +159,7 @@ export default function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route path="admin/usuarios/:id" element={<UsuarioDetallePage />} />
 
             </Route>
           </Route>
@@ -164,6 +190,32 @@ export default function App() {
                 </ProtectedRoute>
               } />
               <Route path="/gimnasios/:id" element={<GimnasioDetallePage />} />
+
+              <Route path="/membresias" element={
+                <ProtectedRoute requiredPermissions={['membresia.ver']}>
+                  <MembresisPage />
+                </ProtectedRoute>
+              } />
+
+              <Route path="/membresia/:id" element={<MembresiaDetallePage />} />
+
+              <Route path="/tipos-clases" element={
+                <ProtectedRoute requiredPermissions={['tiposClase.ver']}>
+                  <TipoClasePages />
+                </ProtectedRoute>
+              } />
+
+              <Route path="/programacion-clases" element={
+                <ProtectedRoute requiredPermissions={['programacionClases.ver']}>
+                  <ProgramacionClasePage />
+                </ProtectedRoute>
+              } />
+
+              <Route path="/clases" element={
+                <ProtectedRoute requiredPermissions={['clases.ver']}>
+                  <ClasePage />
+                </ProtectedRoute>
+              } />
             </Route>
           </Route>
 

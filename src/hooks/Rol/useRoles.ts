@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { obtenerRoles } from "../api/rol";
+import { obtenerRoles } from "../../api/rol";
 
 export const useRoles = () => {
     const queryClient = useQueryClient();

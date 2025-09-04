@@ -177,14 +177,14 @@ const DashboardLayout = () => {
                           {rolActivo?.nombre}
                         </Typography>
                       </div>
-                      {user?.fotoPerfil ? (
+                      {user?.urlFotoPerfil ? (
                         <Avatar
                           size="md"
                           alt={user.nombres}
                           withBorder={true}
                           color="blue-gray"
                           className="p-0.5 h-10 w-10 border-0 flex items-center"
-                          src={user.fotoPerfil}
+                          src={user.urlFotoPerfil}
                         />
                       ) : (
                         <div className="flex items-center rounded-full h-10 w-10 justify-center bg-gradient-to-br from-[var(--color-gradient-from)] to-[var(--color-gradient-to)] text-white font-medium">

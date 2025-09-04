@@ -4,10 +4,9 @@ import { NormalButton } from "../../components/Utiles/Buttons/NormalButton";
 import Loader from "../../components/Utiles/Loader/Loader";
 import PageHeader from "../../components/Utiles/Page/PageHeader";
 import { getErrorMessage } from "../../helpers/errorHelper";
-import { useGimnasios } from "../../hooks/useGimnasios"
 import PageContent from "../../components/Utiles/Page/PageContent";
 import GimnasioList from "../../components/Gimnasio/GimnasioList";
-import { useGimnasioMutations } from "../../hooks/useGimnasioMutations";
+import { useGimnasioMutations } from "../../hooks/Gimnasio/useGimnasioMutations";
 import type { GimnasioInputType, GimnasioItem, GimnasioOutputType } from "../../interfaces/Gimnasio/Gimnasio";
 import { useEffect, useRef, useState } from "react";
 import ProfessionalModal from "../../components/Utiles/Modals/Modal";
@@ -15,10 +14,11 @@ import ConfirmationModal from "../../components/Utiles/Modals/ConfirmationModal"
 import { MdDomainDisabled, MdRestartAlt } from "react-icons/md";
 import toast from "react-hot-toast";
 import GimnasioForm from "../../components/Gimnasio/GimnasioForm";
-import { useGimnasio } from "../../hooks/useGimnasio";
+import { useGimnasio } from "../../hooks/Gimnasio/useGimnasio";
 import EmptyState from "../../components/Utiles/Page/EmptyState";
 import { Input, Option, Select } from "@material-tailwind/react";
 import FooterPagination from "../../components/Utiles/Pagination/FooterPagination";
+import { useGimnasios } from "../../hooks/Gimnasio/useGimnasios";
 
 type ModalType = {
     isOpen: boolean
@@ -242,18 +242,16 @@ const GimnasiosPage = () => {
                             onDeleteGimnasio={gimnasio => handleDeleteModalOpen(gimnasio)}
                             onReactivateGimnasio={gimnasio => handleReactivateModalOpen(gimnasio)}
                         />
-                        <div className="flex flex-col md:flex-row flex-nowrap justify-between items-center space-y-2">
-                            <FooterPagination
-                                currentPage={data?.number ?? 0}
-                                totalPages={data?.totalPages ?? 0}
-                                pageSize={pageSize}
-                                onPageSizeChange={(size) => {
-                                    setPageSize(size);
-                                    setCurrentPage(0);
-                                }}
-                                onPageChange={(page) => setCurrentPage(page)}
-                            />
-                        </div>
+                        <FooterPagination
+                            currentPage={data?.number ?? 0}
+                            totalPages={data?.totalPages ?? 0}
+                            pageSize={pageSize}
+                            onPageSizeChange={(size) => {
+                                setPageSize(size);
+                                setCurrentPage(0);
+                            }}
+                            onPageChange={(page) => setCurrentPage(page)}
+                        />
                     </>
                 )}
 

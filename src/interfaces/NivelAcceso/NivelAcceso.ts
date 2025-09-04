@@ -20,7 +20,7 @@ export type NivelAccesoOutput = {
 }
 
 export type NivelAccesoOutputPageble = {
-    content: Content[];
+    content: NivelAccesoItem[];
     pageable: Pageable;
     last: boolean;
     totalPages: number;
@@ -33,7 +33,7 @@ export type NivelAccesoOutputPageble = {
     empty: boolean;
 }
 
-export type Content = {
+export type NivelAccesoItem = {
     id: number;
     nombre: string;
     descripcion: string;

@@ -103,21 +103,23 @@ const LoadError: React.FC<LoadErrorProps> = ({
             </motion.div>
 
             {/* Botón premium con efecto */}
-            <motion.button
-                onClick={onReintentar}
-                whileHover={{ backgroundColor: "#ef4444" }}
-                whileTap={{ scale: 0.98 }}
-                className="flex items-center px-5 py-2.5 text-sm font-medium text-white bg-red-500 rounded-lg transition-colors relative overflow-hidden"
-            >
-                <motion.span
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                    className="mr-2"
+            {onReintentar && (
+                <motion.button
+                    onClick={onReintentar}
+                    whileHover={{ backgroundColor: "#ef4444" }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex items-center px-5 py-2.5 text-sm font-medium text-white bg-red-500 rounded-lg transition-colors relative overflow-hidden"
                 >
-                    <FiRefreshCw className="w-4 h-4" />
-                </motion.span>
-                {textoBoton}
-            </motion.button>
+                    <motion.span
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                        className="mr-2"
+                    >
+                        <FiRefreshCw className="w-4 h-4" />
+                    </motion.span>
+                    {textoBoton}
+                </motion.button>
+            )}
 
             {/* Borde sutil animado */}
             <motion.div

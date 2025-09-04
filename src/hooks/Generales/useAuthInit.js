@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAuthStore } from '../store/authStore';
+import { useAuthStore } from '../../store/authStore';
 import axios from 'axios';
 import toast from "react-hot-toast";
 

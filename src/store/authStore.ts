@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware';
 import * as authAPI from '../api/auth';
 import * as configAPI from '../api/config';
 import { rutaPorRol } from '../helpers/rutaPorRol';
-import type { UsuarioOutputType } from '../interfaces/Usuario/Usuario';
+import type { UsuarioOutputType } from '../interfaces/Usuario/UsuarioLogin';
 import { getErrorMessage } from '../helpers/errorHelper';
 
 
@@ -73,6 +73,7 @@ export const useAuthStore = create<AuthState>()(
               token: datos.token.token,
               refreshToken: datos.token.refreshToken
             },
+            id: datos.id,
             email: datos.email,
             nombres: datos.nombres,
             apellidoPaterno: datos.apellidoPaterno,

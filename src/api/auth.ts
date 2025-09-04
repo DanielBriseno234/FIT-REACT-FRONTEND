@@ -1,6 +1,6 @@
 import type { ApiResponse } from '../interfaces/Api/ApiResponse';
 import { handleApiResponse } from '../helpers/handleApiResponse';
-import type { UsuarioOutputType } from '../interfaces/Usuario/Usuario';
+import type { UsuarioOutputType } from '../interfaces/Usuario/UsuarioLogin';
 
 // Iniciar Sesión
 export const login = async (email: string, contrasena: string) => {

@@ -1,6 +1,7 @@
 import { handleApiResponse } from '../helpers/handleApiResponse';
 import type { ApiResponse } from '../interfaces/Api/ApiResponse';
 import type { GimnasioInputType, GimnasioOutputPaginated, GimnasioOutputType } from '../interfaces/Gimnasio/Gimnasio';
+import type { UsuarioListType } from '../interfaces/Usuario/Usuario';
 
 // Obtener todos los gimnasios
 export const obtenerGimnasios = async (page = 0, size = 10, estatus = 'ACTIVO', filtro = ''): Promise<ApiResponse<GimnasioOutputPaginated>> => {
@@ -14,6 +15,11 @@ export const obtenerGimnasios = async (page = 0, size = 10, estatus = 'ACTIVO', 
         })
     }
 };
+
+// Obtener todos los gimnasios sin paginacion para selects
+export const obtenerTodosGimnasios = async (): Promise<ApiResponse<UsuarioListType[]>> => {
+    return handleApiResponse<UsuarioListType[]>("get", "/gimnasios/all", {});
+}
 
 // Buscar gimnasios
 export const buscarGimnasio = async (page = 0, size = 10, estatus = 'ACTIVO', filtro = ''): Promise<ApiResponse<GimnasioOutputPaginated>> => {

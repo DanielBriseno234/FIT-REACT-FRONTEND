@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import type { GimnasioInputType } from "../interfaces/Gimnasio/Gimnasio";
-import { actualizarGimnasio, crearGimnasio, eliminarGimnasio, reactivarGimnasio } from "../api/gym";
+import type { GimnasioInputType } from "../../interfaces/Gimnasio/Gimnasio";
+import { actualizarGimnasio, crearGimnasio, eliminarGimnasio, reactivarGimnasio } from "../../api/gym";
 import { useRef } from "react";
 
 export const useGimnasioMutations = () => {

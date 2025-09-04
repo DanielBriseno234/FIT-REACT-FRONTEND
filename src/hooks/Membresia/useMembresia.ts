@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { obtenerGimnasioEspecifico } from "../api/gym";
+import { obtenerMembresiaEspecifica } from "../../api/membresia";
 
-export const useGimnasio = (id: number) => {
+export const useMembresia = (id: number) => {
     const queryClient = useQueryClient();
 
     const {
@@ -10,16 +10,16 @@ export const useGimnasio = (id: number) => {
         isLoading,
         refetch,
     } = useQuery({
-        queryKey: ["gimnasio", id],
-        queryFn: () => obtenerGimnasioEspecifico(id),
+        queryKey: ["membresia", id],
+        queryFn: () => obtenerMembresiaEspecifica(id),
         select: (response) => response.datos,
         enabled: !!id,
         staleTime: 1000 * 60 * 5,
         retry: false,
     });
 
-    const invalidateGimnasio = () => {
-        queryClient.invalidateQueries({ queryKey: ['gimnasio'] });
+    const invalidateMembresia = () => {
+        queryClient.invalidateQueries({ queryKey: ['membresia'] });
     };
 
     return {
@@ -27,6 +27,6 @@ export const useGimnasio = (id: number) => {
         error,
         isLoading,
         refetch,
-        invalidateGimnasio
+        invalidateMembresia
     };
 };

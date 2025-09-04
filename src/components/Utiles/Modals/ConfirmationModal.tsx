@@ -12,6 +12,7 @@ interface ConfirmationModalProps {
     onConfirm: () => void;
     title?: string;
     message?: string;
+    description?: string;
     confirmText?: string
     iconConfirm?: React.ReactNode
     cancelText?: string
@@ -25,6 +26,7 @@ const ConfirmationModal = ({
     onConfirm,
     title = "Confirmar acción",
     message = "¿Estás seguro de realizar esta acción?",
+    description = "",
     confirmText = "Confirmar",
     iconConfirm = <FiTrash2 />,
     cancelText = "Cancelar",
@@ -39,6 +41,9 @@ const ConfirmationModal = ({
         >
             <div className="space-y-6">
                 <p className="text-gray-700">{message}</p>
+                {description && (
+                    <p className='text-gray-600 text-sm'>{description}</p>
+                )}
 
                 <div className="flex justify-between md:justify-end space-x-3">
                     <CancelButton

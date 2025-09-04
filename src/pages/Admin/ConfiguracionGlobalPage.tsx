@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useForm, Controller, type SubmitHandler } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { motion } from 'framer-motion';
-import { useCharCounter } from '../../hooks/useCharCounter';
+import { useCharCounter } from '../../hooks/Generales/useCharCounter';
 import { FaImage, FaQuoteLeft, FaUser, FaPen, FaSave, FaTimes, FaPalette, FaInfoCircle, FaEye } from 'react-icons/fa';
 import { CancelButton } from '../../components/Utiles/Buttons/CancelButton';
 import { NormalButton } from '../../components/Utiles/Buttons/NormalButton';
@@ -14,8 +14,8 @@ import { ChromePicker, type ColorResult } from 'react-color';
 import ProfessionalModal from '../../components/Utiles/Modals/Modal';
 import { type ColoresType, type ConfiguracionInputType } from '../../interfaces/Configuracion/Configuracion';
 import { getErrorMessage } from '../../helpers/errorHelper';
-import useConfig from '../../hooks/useConfig';
-import { useConfigMutations } from '../../hooks/useConfigMutations';
+import useConfig from '../../hooks/Configuracion/useConfig';
+import { useConfigMutations } from '../../hooks/Configuracion/useConfigMutations';
 
 const ConfiguracionGlobalPage = () => {
     const { config: configuracion, isFirstLoading, error, refetch } = useConfig();

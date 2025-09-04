@@ -4,7 +4,7 @@ import { rutaPorRol } from '../../helpers/rutaPorRol';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaUserShield } from 'react-icons/fa';
 import { GiMuscularTorso } from "react-icons/gi";
-import type { Rol } from '../../interfaces/Usuario/Usuario';
+import type { Rol } from '../../interfaces/Usuario/UsuarioLogin';
 
 export default function SeleccionarRolComponent() {
   const navigate = useNavigate();

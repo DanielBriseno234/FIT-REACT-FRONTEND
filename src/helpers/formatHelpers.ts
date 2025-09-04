@@ -37,3 +37,11 @@ export const formatearFecha = (
 
     return new Date(dateString).toLocaleDateString("es-ES", options);
 };
+
+// Funcion para formatear el precio
+export const formatearPrecio = (price: number) => {
+    return new Intl.NumberFormat('es-MX', {
+        style: 'currency',
+        currency: 'MXN'
+    }).format(price);
+};

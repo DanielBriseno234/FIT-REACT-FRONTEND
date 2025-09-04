@@ -1,0 +1,92 @@
+import React from 'react'
+import { motion, AnimatePresence } from "framer-motion"
+import type { NivelAccesoItem } from '../../interfaces/NivelAcceso/NivelAcceso'
+import NivelAccesoCard from './NivelAccesoCard'
+
+interface NivelAccesoListProps {
+    nivelesAcceso: NivelAccesoItem[]
+    onUpdateNivelAcceso: (id: number) => void
+    onDeleteNivelAcceso: (nivelAcceso: NivelAccesoItem) => void
+    onReactivateNivelAcceso: (nivelAcceso: NivelAccesoItem) => void
+}
+
+const NivelAccesoList: React.FC<NivelAccesoListProps> = ({
+    nivelesAcceso,
+    onUpdateNivelAcceso,
+    onDeleteNivelAcceso,
+    onReactivateNivelAcceso
+}) => {
+    return (
+        <div className='space-y-8'>
+            <AnimatePresence mode="wait">
+                <motion.div
+                    // key={pagination.currentPage}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                >
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+                        {nivelesAcceso.map(nivel => (
+                            <NivelAccesoCard
+                                key={nivel.id}
+                                nivelAcceso={nivel}
+                                onUpdate={onUpdateNivelAcceso}
+                                onDelete={onDeleteNivelAcceso}
+                                onReactivate={onReactivateNivelAcceso}
+                            />
+                        ))}
+                    </div>
+                </motion.div>
+            </AnimatePresence>
+        </div>
+    )
+}
+
+export default NivelAccesoList
+
+
+// import { motion, AnimatePresence } from "framer-motion";
+// import Paginacion from '../Utiles/Paginacion/Paginacion';
+// import NivelAccesoCard from "./NivelAccesoCard";
+// import { NivelAccesoItem } from '../../interfaces/NivelAcceso/NivelAcceso';
+
+// const NivelAccesoList = ({ niveles, pagination, onAdd, onEdit, onDelete, onReactivate, onPageChange }) => {
+
+//     return (
+//         <div className="space-y-8">
+//             <AnimatePresence mode="wait">
+//                 <motion.div
+//                     key={pagination.currentPage}
+//                     initial={{ opacity: 0, y: 10 }}
+//                     animate={{ opacity: 1, y: 0 }}
+//                     exit={{ opacity: 0, y: -10 }}
+//                     transition={{ duration: 0.3 }}
+//                 >
+//                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+//                         {niveles.map((nivel) => (
+//                             <NivelAccesoCard
+//                                 key={nivel.id}
+//                                 nivelAcceso={nivel}
+//                                 onEdit={() => onEdit(nivel)}
+//                                 onDelete={() => onDelete(nivel)}
+//                                 onReactivate={() => onReactivate(nivel)}
+//                             />
+//                         ))}
+//                     </div>
+//                 </motion.div>
+//             </AnimatePresence>
+
+//             {pagination.totalPages > 1 && (
+//                 <Paginacion
+//                     currentPage={pagination.currentPage}
+//                     totalPages={pagination.totalPages}
+//                     onPageChange={onPageChange}
+//                     className="mt-6"
+//                 />
+//             )}
+//         </div>
+//     );
+// };
+
+// export default NivelAccesoList;

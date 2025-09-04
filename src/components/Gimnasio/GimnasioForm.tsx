@@ -7,7 +7,7 @@ import { NormalButton } from "../Utiles/Buttons/NormalButton";
 import { FaImage, FaSave, FaTimes, FaTrash } from "react-icons/fa";
 import { useEffect } from "react";
 import ErrorValidationMessage from "../Utiles/Tags/ErrorValidationMessage";
-import { useCharCounter } from "../../hooks/useCharCounter";
+import { useCharCounter } from "../../hooks/Generales/useCharCounter";
 import { FiPlus } from "react-icons/fi";
 import { limpiarInput } from "../../helpers/limpiezaInputs";
 import toast from "react-hot-toast";

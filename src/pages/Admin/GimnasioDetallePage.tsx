@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useGimnasio } from '../../hooks/useGimnasio';
+import { useGimnasio } from '../../hooks/Gimnasio/useGimnasio';
 import Loader from '../../components/Utiles/Loader/Loader';
 import LoadError from '../../components/Generales/LoadError';
 import { getErrorMessage } from '../../helpers/errorHelper';
@@ -335,58 +335,3 @@ const GimnasioDetallePage = () => {
 }
 
 export default GimnasioDetallePage
-
-
-// import { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
-// import { useGymStore } from "../../store/gymStore";
-// import Loader from "../../components/Utiles/Loader/Loader";
-// import GimnasioDetails from "../../components/Gimnasio/GimnasioDetails";
-// import NormalButton from "../../components/Utiles/Botones/NormalButton";
-// import { FaArrowLeft } from "react-icons/fa";
-// import LoadError from "../../components/Generales/ErrorCarga";
-
-// const GimnasioDetallePage = () => {
-//   const { id } = useParams();
-
-//   const { obtenerGimnasioEspecifico } = useGymStore();
-
-//   const [gimnasio, setGimnasio] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   const fetchGimnasio = async () => {
-//     setLoading(true);
-//     const result = await obtenerGimnasioEspecifico(id);
-//     if (result.success) {
-//       setGimnasio(result.datos);
-//       setError(null);
-//     } else {
-//       setError(result.mensaje || "Error al cargar el gimnasio");
-//     }
-//     setLoading(false);
-//   };
-
-//   useEffect(() => {
-//     fetchGimnasio();
-//   }, [id, obtenerGimnasioEspecifico]);
-
-//   if (loading) return <Loader message="Cargando detalles del gimnasio..." />
-
-//   if (error) return (
-//     <LoadError
-//       titulo="Error al cargar la información del gimnasio"
-//       mensaje={error || "Ocurrió un error inesperado"}
-//       textoBoton='Reintentar'
-//       onReintentar={() => { fetchGimnasio() }}
-//     />
-//   );
-
-//   return (
-//     <div>
-//       <GimnasioDetails gimnasio={gimnasio} />
-//     </div>
-//   );
-// };
-
-// export default GimnasioDetallePage;

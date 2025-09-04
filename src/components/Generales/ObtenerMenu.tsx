@@ -1,8 +1,9 @@
-import { FaHome, FaUsers } from 'react-icons/fa';
+import { FaChalkboardTeacher, FaHome, FaUsers } from 'react-icons/fa';
 import { FaUserGroup } from "react-icons/fa6";
 import { IoMdSettings } from "react-icons/io";
-import { MdOutlineVerifiedUser, MdSupervisedUserCircle } from 'react-icons/md';
+import { MdCardMembership, MdOutlineSchedule, MdOutlineSchool, MdOutlineVerifiedUser, MdSupervisedUserCircle } from 'react-icons/md';
 import { PiBuildingOffice } from "react-icons/pi";
+import { BiCategoryAlt } from "react-icons/bi";
 import type { ReactNode } from 'react';
 import type { RolActivo } from '../../store/authStore';
 
@@ -61,11 +62,11 @@ export const getMenuItems = (rolActivo: RolActivo | null, permissions: Permiso[]
             icon: <PiBuildingOffice />,
             label: "Gimnasios",
             roles: ['ADMIN', 'RECEPCIONISTA'],
-            permiso: undefined // Puede ser undefined o null
+            permiso: 'gimnasio.ver'
         },
         {
-            label: "Usuarios y Permisos",
             icon: <FaUsers />,
+            label: "Usuarios y Permisos",
             roles: ['ADMIN'],
             subItems: [
                 {
@@ -90,7 +91,43 @@ export const getMenuItems = (rolActivo: RolActivo | null, permissions: Permiso[]
                     permiso: 'usuario.ver'
                 }
             ]
+        },
+        {
+            path: '/membresias',
+            icon: <MdCardMembership />,
+            label: "Membresías",
+            roles: ['ADMIN', 'RECEPCIONISTA'],
+            permiso: 'membresia.ver'
+        },
+        {
+            icon: <MdOutlineSchool />,
+            label: "Clases",
+            roles: ['ADMIN', 'RECEPCIONISTA'],
+            subItems: [
+                {
+                    path: "/tipos-clases",
+                    label: "Tipos Clases",
+                    icon: <BiCategoryAlt />,
+                    roles: ['ADMIN', 'RECEPCIONISTA'],
+                    permiso: 'tiposClase.ver'
+                },
+                {
+                    path: "/programacion-clases",
+                    label: "Programación Clases",
+                    icon: <MdOutlineSchedule />,
+                    roles: ['ADMIN', 'RECEPCIONISTA'],
+                    permiso: 'programacionClases.ver'
+                },
+                {
+                    path: "/clases",
+                    label: "Clases",
+                    icon: <FaChalkboardTeacher />,
+                    roles: ['ADMIN', 'RECEPCIONISTA'],
+                    permiso: 'clases.ver'
+                }
+            ]
         }
+
     ];
 
     return menuItems.filter(item => {
